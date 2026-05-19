@@ -3,7 +3,7 @@ export interface Subject {
   code: string
   name: string
   hours_per_week: number
-  type: 'lecture' | 'lab'
+  type: 'lecture' | 'lab' | 'cisco' | 'drawing'
   preferred_time?: string
   students: number
 }
@@ -12,7 +12,7 @@ export interface Room {
   id: number
   name: string
   capacity: number
-  type: 'lecture' | 'lab'
+  type: 'lecture' | 'lab' | 'cisco' | 'drawing'
 }
 
 export interface Instructor {

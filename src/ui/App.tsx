@@ -20,7 +20,7 @@ const PREFERRED_TIMES = [
 
 function SubjectsTab() {
   const [items, setItems] = useState<Subject[]>([])
-  const [form, setForm] = useState({ code: '', name: '', hours_per_week: 3, type: 'lecture' as 'lecture' | 'lab', students: 30 })
+  const [form, setForm] = useState({ code: '', name: '', hours_per_week: 3, type: 'lecture' as 'lecture' | 'lab' | 'cisco' | 'drawing', students: 30 })
   const [err, setErr] = useState('')
 
   const load = useCallback(async () => {
@@ -31,7 +31,7 @@ function SubjectsTab() {
 
   const handleAdd = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault(); setErr('')
-    try { await api.subjects.create(form); setForm({ code: '', name: '', hours_per_week: 3, type: 'lecture', students: 30 }); load() }
+    try { await api.subjects.create(form); setForm({ code: '', name: '', hours_per_week: 3, type: 'lecture' as 'lecture' | 'lab' | 'cisco' | 'drawing', students: 30 }); load() }
     catch (e) { setErr(String(e)) }
   }
 
@@ -44,9 +44,11 @@ function SubjectsTab() {
         <input placeholder="Name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
         <input type="number" placeholder="Hrs/wk" value={form.hours_per_week} min={1} max={14} onChange={e => setForm(f => ({ ...f, hours_per_week: +e.target.value }))} required />
         <input type="number" placeholder="Students" value={form.students} min={1} onChange={e => setForm(f => ({ ...f, students: +e.target.value }))} required />
-        <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value as 'lecture' | 'lab' }))}>
+        <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value as 'lecture' | 'lab' | 'cisco' | 'drawing' }))}>
           <option value="lecture">Lecture</option>
           <option value="lab">Lab</option>
+          <option value="cisco">Cisco</option>
+          <option value="drawing">Drawing</option>
         </select>
         <button type="submit" className="btn-add">+ Add</button>
       </form>
@@ -72,7 +74,7 @@ function SubjectsTab() {
 
 function RoomsTab() {
   const [items, setItems] = useState<Room[]>([])
-  const [form, setForm] = useState({ name: '', capacity: 40, type: 'lecture' as 'lecture' | 'lab' })
+  const [form, setForm] = useState({ name: '', capacity: 40, type: 'lecture' as 'lecture' | 'lab' | 'cisco' | 'drawing' })
   const [err, setErr] = useState('')
 
   const load = useCallback(async () => {
@@ -83,7 +85,7 @@ function RoomsTab() {
 
   const handleAdd = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault(); setErr('')
-    try { await api.rooms.create(form); setForm({ name: '', capacity: 40, type: 'lecture' }); load() }
+    try { await api.rooms.create(form); setForm({ name: '', capacity: 40, type: 'lecture' as 'lecture' | 'lab' | 'cisco' | 'drawing' }); load() }
     catch (e) { setErr(String(e)) }
   }
 
@@ -94,9 +96,11 @@ function RoomsTab() {
       <form className="add-form" onSubmit={handleAdd}>
         <input placeholder="Room name (e.g. R101)" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
         <input type="number" placeholder="Capacity" value={form.capacity} min={1} onChange={e => setForm(f => ({ ...f, capacity: +e.target.value }))} required />
-        <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value as 'lecture' | 'lab' }))}>
+        <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value as 'lecture' | 'lab' | 'cisco' | 'drawing' }))}>
           <option value="lecture">Lecture</option>
           <option value="lab">Lab</option>
+          <option value="cisco">Cisco</option>
+          <option value="drawing">Drawing</option>
         </select>
         <button type="submit" className="btn-add">+ Add</button>
       </form>

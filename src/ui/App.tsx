@@ -101,6 +101,7 @@ function RoomsTab() {
           <option value="lab">Lab</option>
           <option value="cisco">Cisco</option>
           <option value="drawing">Drawing</option>
+          <option value = 'other'>Fuck you ben</option>
         </select>
         <button type="submit" className="btn-add">+ Add</button>
       </form>

@@ -1,0 +1,19 @@
+{
+  "appId": "com.group-27.electron-template",
+  "files": ["dist-electron", "dist-react"],
+  "extraResources": [
+    { "from": "python", "to": "python", "filter": ["**/*"] },
+    "dist-electron/preload.js"
+  ],
+  "icon": "./desktopIcon.png",
+  "mac": {
+    "target": "dmg"
+  },
+  "linux": {
+    "target": "AppImage",
+    "category": "Utility"
+  },
+  "win": {
+    "target": ["portable", "msi"]
+  }
+}

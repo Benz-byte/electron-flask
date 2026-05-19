@@ -1,0 +1,270 @@
+/* ── Layout ─────────────────────────────────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background: #0f1117;
+  color: #e2e8f0;
+  font-family: system-ui, sans-serif;
+  font-size: 14px;
+}
+
+.app-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  height: 52px;
+  background: #161b27;
+  border-bottom: 1px solid #2d3748;
+  flex-shrink: 0;
+}
+
+.app-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  color: #90cdf4;
+}
+
+/* ── API Status Badge ───────────────────────────────────────────────────── */
+
+.api-badge {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 999px;
+}
+.api-connecting { background: #2d3748; color: #a0aec0; }
+.api-online     { background: #1a4731; color: #68d391; }
+.api-offline    { background: #4a1a1a; color: #fc8181; }
+
+/* ── Tab Nav ────────────────────────────────────────────────────────────── */
+
+.tab-nav {
+  display: flex;
+  gap: 2px;
+  padding: 0.5rem 1.5rem 0;
+  background: #161b27;
+  border-bottom: 1px solid #2d3748;
+  flex-shrink: 0;
+}
+
+.tab-btn {
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  padding: 0.5rem 1rem;
+  color: #718096;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+  margin-bottom: -1px;
+}
+.tab-btn:hover  { color: #e2e8f0; }
+.tab-btn.active { color: #90cdf4; border-bottom-color: #90cdf4; }
+
+/* ── Main Content ───────────────────────────────────────────────────────── */
+
+.app-main {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.5rem;
+}
+
+.tab-pane h2 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  margin: 0 0 1rem;
+}
+
+/* ── Add Form ───────────────────────────────────────────────────────────── */
+
+.add-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+  padding: 1rem;
+  background: #1a2035;
+  border: 1px solid #2d3748;
+  border-radius: 8px;
+}
+
+.add-form input,
+.add-form select {
+  background: #0f1117;
+  border: 1px solid #3a4a63;
+  border-radius: 5px;
+  color: #e2e8f0;
+  padding: 0.4rem 0.7rem;
+  font-size: 0.85rem;
+  outline: none;
+  transition: border-color 0.15s;
+  min-width: 120px;
+}
+.add-form input:focus,
+.add-form select:focus { border-color: #90cdf4; }
+.add-form input[type="number"] { width: 80px; min-width: unset; }
+
+/* ── Buttons ────────────────────────────────────────────────────────────── */
+
+.btn-add {
+  background: #2b6cb0;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-add:hover { background: #3182ce; }
+
+.btn-del {
+  background: none;
+  border: none;
+  color: #fc8181;
+  font-size: 1.1rem;
+  cursor: pointer;
+  line-height: 1;
+  padding: 2px 6px;
+  border-radius: 4px;
+  transition: background 0.15s;
+}
+.btn-del:hover { background: #4a1a1a; }
+
+.btn-primary {
+  background: #276749;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover:not(:disabled) { background: #2f855a; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.btn-secondary {
+  background: #2d3748;
+  border: none;
+  border-radius: 5px;
+  color: #e2e8f0;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-secondary:hover:not(:disabled) { background: #4a5568; }
+.btn-secondary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Tables ─────────────────────────────────────────────────────────────── */
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85rem;
+}
+
+th {
+  text-align: left;
+  padding: 0.5rem 0.75rem;
+  background: #1a2035;
+  color: #718096;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid #2d3748;
+}
+
+td {
+  padding: 0.5rem 0.75rem;
+  border-bottom: 1px solid #1a2035;
+  color: #cbd5e0;
+}
+
+tr:hover td { background: #161b27; }
+
+.empty-row {
+  text-align: center;
+  color: #4a5568;
+  padding: 2rem !important;
+}
+
+/* ── Badges ─────────────────────────────────────────────────────────────── */
+
+.badge {
+  font-size: 0.7rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 999px;
+  text-transform: uppercase;
+}
+.badge-lecture { background: #1a365d; color: #90cdf4; }
+.badge-lab     { background: #322659; color: #b794f4; }
+
+/* ── Messages ───────────────────────────────────────────────────────────── */
+
+.msg-success {
+  background: #1a4731;
+  color: #68d391;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+.msg-error {
+  background: #4a1a1a;
+  color: #fc8181;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+  margin-bottom: 1rem;
+  font-size: 0.85rem;
+}
+
+/* ── Solver / Schedule ──────────────────────────────────────────────────── */
+
+.solver-bar {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.day-group { margin-bottom: 1.5rem; }
+
+.day-heading {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #90cdf4;
+  margin: 0 0 0.5rem;
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid #2d3748;
+}
+
+.time-cell {
+  font-variant-numeric: tabular-nums;
+  color: #a0aec0;
+  white-space: nowrap;
+}
+
+.subj-code {
+  display: inline-block;
+  background: #1a365d;
+  color: #90cdf4;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-right: 4px;
+}

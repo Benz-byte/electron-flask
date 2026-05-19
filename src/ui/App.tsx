@@ -20,7 +20,7 @@ const PREFERRED_TIMES = [
 
 function SubjectsTab() {
   const [items, setItems] = useState<Subject[]>([])
-  const [form, setForm] = useState({ code: '', name: '', hours_per_week: 3, type: 'lecture' as 'lecture' | 'lab' })
+  const [form, setForm] = useState({ code: '', name: '', hours_per_week: 3, type: 'lecture' as 'lecture' | 'lab', students: 30 })
   const [err, setErr] = useState('')
 
   const load = useCallback(async () => {
@@ -31,7 +31,7 @@ function SubjectsTab() {
 
   const handleAdd = async (e: React.SyntheticEvent<HTMLFormElement>) => {
     e.preventDefault(); setErr('')
-    try { await api.subjects.create(form); setForm({ code: '', name: '', hours_per_week: 3, type: 'lecture' }); load() }
+    try { await api.subjects.create(form); setForm({ code: '', name: '', hours_per_week: 3, type: 'lecture', students: 30 }); load() }
     catch (e) { setErr(String(e)) }
   }
 
@@ -43,6 +43,7 @@ function SubjectsTab() {
         <input placeholder="Code (e.g. CS101)" value={form.code} onChange={e => setForm(f => ({ ...f, code: e.target.value }))} required />
         <input placeholder="Name" value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} required />
         <input type="number" placeholder="Hrs/wk" value={form.hours_per_week} min={1} max={14} onChange={e => setForm(f => ({ ...f, hours_per_week: +e.target.value }))} required />
+        <input type="number" placeholder="Students" value={form.students} min={1} onChange={e => setForm(f => ({ ...f, students: +e.target.value }))} required />
         <select value={form.type} onChange={e => setForm(f => ({ ...f, type: e.target.value as 'lecture' | 'lab' }))}>
           <option value="lecture">Lecture</option>
           <option value="lab">Lab</option>
@@ -50,16 +51,17 @@ function SubjectsTab() {
         <button type="submit" className="btn-add">+ Add</button>
       </form>
       <table>
-        <thead><tr><th>Code</th><th>Name</th><th>Hrs/Wk</th><th>Type</th><th /></tr></thead>
+        <thead><tr><th>Code</th><th>Name</th><th>Hrs/Wk</th><th>Students</th><th>Type</th><th /></tr></thead>
         <tbody>
           {items.map(s => (
             <tr key={s.id}>
               <td>{s.code}</td><td>{s.name}</td><td>{s.hours_per_week}</td>
+              <td>{s.students}</td>
               <td><span className={`badge badge-${s.type}`}>{s.type}</span></td>
               <td><button className="btn-del" onClick={() => api.subjects.remove(s.id).then(load).catch(e => setErr(String(e)))}>×</button></td>
             </tr>
           ))}
-          {items.length === 0 && <tr><td colSpan={5} className="empty-row">No subjects yet</td></tr>}
+          {items.length === 0 && <tr><td colSpan={6} className="empty-row">No subjects yet</td></tr>}
         </tbody>
       </table>
     </div>

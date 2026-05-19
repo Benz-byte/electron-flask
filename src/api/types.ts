@@ -5,6 +5,7 @@ export interface Subject {
   hours_per_week: number
   type: 'lecture' | 'lab'
   preferred_time?: string
+  students: number
 }
 
 export interface Room {

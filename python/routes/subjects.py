@@ -18,6 +18,7 @@ def create_subject():
         data['hours_per_week'],
         data.get('type', 'lecture'),
         data.get('preferred_time') or None,
+        data.get('students', 30),
     )
     return jsonify(row), 201
 

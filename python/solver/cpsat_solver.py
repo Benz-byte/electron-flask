@@ -346,9 +346,15 @@ def run_cpsat_solver(
             problems.append(f"Subject id={subject_id} no longer exists; remove and re-add the assignment.")
             continue
 
-        matching_rooms = rooms_by_type.get(subject["type"], [])
+        matching_rooms = [
+            r for r in rooms_by_type.get(subject["type"], [])
+            if r["capacity"] >= subject.get("students", 0)
+        ]
         if not matching_rooms:
-            problems.append(f"Missing rooms: {subject['code']} needs a {subject['type']} room.")
+            problems.append(
+                f"Missing rooms: {subject['code']} needs a {subject['type']} room with capacity "
+                f">= {subject.get('students', 0)}."
+            )
             continue
 
         patterns = _get_session_patterns(int(subject["hours_per_week"]), slot_duration_minutes)

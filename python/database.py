@@ -22,7 +22,8 @@ def init_db() -> None:
             name            TEXT    NOT NULL,
             hours_per_week  INTEGER NOT NULL DEFAULT 3,
             type            TEXT    NOT NULL DEFAULT 'lecture',
-            preferred_time  TEXT
+            preferred_time  TEXT,
+            students        INTEGER NOT NULL DEFAULT 30
         );
 
         CREATE TABLE IF NOT EXISTS rooms (
@@ -119,6 +120,8 @@ def init_db() -> None:
     subj_cols = [row[1] for row in cursor.execute('PRAGMA table_info(subjects)').fetchall()]
     if 'preferred_time' not in subj_cols:
         cursor.execute('ALTER TABLE subjects ADD COLUMN preferred_time TEXT')
+    if 'students' not in subj_cols:
+        cursor.execute('ALTER TABLE subjects ADD COLUMN students INTEGER NOT NULL DEFAULT 30')
 
     is_cols = [row[1] for row in cursor.execute('PRAGMA table_info(instructor_subjects)').fetchall()]
     if 'preferred_time' not in is_cols:
@@ -162,11 +165,11 @@ def get_all_subjects():
     return [dict(row) for row in rows]
 
 
-def create_subject(code, name, hours_per_week, type, preferred_time=None):
+def create_subject(code, name, hours_per_week, type, preferred_time=None, students=30):
     conn = get_db()
     cursor = conn.execute(
-        'INSERT INTO subjects (code, name, hours_per_week, type, preferred_time) VALUES (?, ?, ?, ?, ?)',
-        (code, name, hours_per_week, type, preferred_time or None),
+        'INSERT INTO subjects (code, name, hours_per_week, type, preferred_time, students) VALUES (?, ?, ?, ?, ?, ?)',
+        (code, name, hours_per_week, type, preferred_time or None, students),
     )
     conn.commit()
     row = conn.execute('SELECT * FROM subjects WHERE id = ?', (cursor.lastrowid,)).fetchone()

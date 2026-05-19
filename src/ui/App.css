@@ -210,6 +210,8 @@ tr:hover td { background: #161b27; }
 }
 .badge-lecture { background: #1a365d; color: #90cdf4; }
 .badge-lab     { background: #322659; color: #b794f4; }
+.badge-drawingroom { background: #005300; color: #0ef81d; }
+.badge-cisco   { background: #ffffff; color: #868686; }
 
 /* ── Messages ───────────────────────────────────────────────────────────── */
 

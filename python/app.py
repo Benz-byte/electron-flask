@@ -25,7 +25,7 @@ app.register_blueprint(solver_bp, url_prefix='/api/solver')
 
 @app.route('/api/health')
 def health():
-    return jsonify({'status': 'ok', 'message': 'Auto Scheduler API is running'})
+    return jsonify({'status': 'ok', 'message': 'API is running'})
 
 
 @app.route('/api/timeslots/')

@@ -5,15 +5,14 @@
     // tell TypeScript to generate ESM Syntax
     "target": "ESNext",
     // tell TypeScript to require ESM Syntax as input (including .js file imports)
-    "module": "nodenext",
+    "module": "commonjs",
     // define where to put generated JS
     "outDir": "../../dist-electron",
     // ignore errors from dependencies
     "skipLibCheck": true,
   },
   "include": [
-    "main.ts",
-    "util.ts"
+    "preload.ts"
   ]
   
 }
